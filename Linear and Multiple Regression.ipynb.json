@@ -1,0 +1,3186 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# pre-processing"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### MISSING DATA"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "import os"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'/Users/mohammadawais/Desktop/ML DATA'"
+      ]
+     },
+     "execution_count": 24,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "os.getcwd()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "os.chdir('/Users/mohammadawais/Desktop/ML DATA')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'/Users/mohammadawais/Desktop/ML DATA'"
+      ]
+     },
+     "execution_count": 26,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "os.getcwd()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dataset=pd.read_csv('DATA.csv')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Country</th>\n",
+       "      <th>Age</th>\n",
+       "      <th>Salary</th>\n",
+       "      <th>Purchased</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>France</td>\n",
+       "      <td>44.0</td>\n",
+       "      <td>72000.0</td>\n",
+       "      <td>No</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Spain</td>\n",
+       "      <td>27.0</td>\n",
+       "      <td>48000.0</td>\n",
+       "      <td>Yes</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>Germany</td>\n",
+       "      <td>30.0</td>\n",
+       "      <td>54000.0</td>\n",
+       "      <td>No</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>Spain</td>\n",
+       "      <td>38.0</td>\n",
+       "      <td>61000.0</td>\n",
+       "      <td>No</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>Germany</td>\n",
+       "      <td>40.0</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>Yes</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>France</td>\n",
+       "      <td>35.0</td>\n",
+       "      <td>58000.0</td>\n",
+       "      <td>Yes</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>Spain</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>52000.0</td>\n",
+       "      <td>No</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>France</td>\n",
+       "      <td>48.0</td>\n",
+       "      <td>79000.0</td>\n",
+       "      <td>Yes</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>8</th>\n",
+       "      <td>Germany</td>\n",
+       "      <td>50.0</td>\n",
+       "      <td>83000.0</td>\n",
+       "      <td>No</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>9</th>\n",
+       "      <td>France</td>\n",
+       "      <td>37.0</td>\n",
+       "      <td>67000.0</td>\n",
+       "      <td>Yes</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   Country   Age   Salary Purchased\n",
+       "0   France  44.0  72000.0        No\n",
+       "1    Spain  27.0  48000.0       Yes\n",
+       "2  Germany  30.0  54000.0        No\n",
+       "3    Spain  38.0  61000.0        No\n",
+       "4  Germany  40.0      NaN       Yes\n",
+       "5   France  35.0  58000.0       Yes\n",
+       "6    Spain   NaN  52000.0        No\n",
+       "7   France  48.0  79000.0       Yes\n",
+       "8  Germany  50.0  83000.0        No\n",
+       "9   France  37.0  67000.0       Yes"
+      ]
+     },
+     "execution_count": 28,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "dataset"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Country</th>\n",
+       "      <th>Age</th>\n",
+       "      <th>Salary</th>\n",
+       "      <th>Purchased</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "      <td>True</td>\n",
+       "      <td>False</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>False</td>\n",
+       "      <td>True</td>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>8</th>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>9</th>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "      <td>False</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   Country    Age  Salary  Purchased\n",
+       "0    False  False   False      False\n",
+       "1    False  False   False      False\n",
+       "2    False  False   False      False\n",
+       "3    False  False   False      False\n",
+       "4    False  False    True      False\n",
+       "5    False  False   False      False\n",
+       "6    False   True   False      False\n",
+       "7    False  False   False      False\n",
+       "8    False  False   False      False\n",
+       "9    False  False   False      False"
+      ]
+     },
+     "execution_count": 29,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "dataset.isnull()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x=dataset.iloc[:,:-1].values"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([['France', 44.0, 72000.0],\n",
+       "       ['Spain', 27.0, 48000.0],\n",
+       "       ['Germany', 30.0, 54000.0],\n",
+       "       ['Spain', 38.0, 61000.0],\n",
+       "       ['Germany', 40.0, nan],\n",
+       "       ['France', 35.0, 58000.0],\n",
+       "       ['Spain', nan, 52000.0],\n",
+       "       ['France', 48.0, 79000.0],\n",
+       "       ['Germany', 50.0, 83000.0],\n",
+       "       ['France', 37.0, 67000.0]], dtype=object)"
+      ]
+     },
+     "execution_count": 31,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "y=dataset.iloc[:,3].values"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array(['No', 'Yes', 'No', 'No', 'Yes', 'Yes', 'No', 'Yes', 'No', 'Yes'],\n",
+       "      dtype=object)"
+      ]
+     },
+     "execution_count": 33,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.impute import SimpleImputer\n",
+    "missingvalues=SimpleImputer(missing_values=np.nan,strategy='mean',verbose=0)\n",
+    "missingvalues=missingvalues.fit(x[:,1:3])\n",
+    "x[:,1:3]=missingvalues.transform(x[:,1:3])\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([['France', 44.0, 72000.0],\n",
+       "       ['Spain', 27.0, 48000.0],\n",
+       "       ['Germany', 30.0, 54000.0],\n",
+       "       ['Spain', 38.0, 61000.0],\n",
+       "       ['Germany', 40.0, 63777.77777777778],\n",
+       "       ['France', 35.0, 58000.0],\n",
+       "       ['Spain', 38.77777777777778, 52000.0],\n",
+       "       ['France', 48.0, 79000.0],\n",
+       "       ['Germany', 50.0, 83000.0],\n",
+       "       ['France', 37.0, 67000.0]], dtype=object)"
+      ]
+     },
+     "execution_count": 35,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### CATEOGRICAL DATA "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.preprocessing import LabelEncoder"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 37,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "labelencoder_country=LabelEncoder()\n",
+    "x[:,0]=labelencoder_country.fit_transform(x[:,0])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[0, 44.0, 72000.0],\n",
+       "       [2, 27.0, 48000.0],\n",
+       "       [1, 30.0, 54000.0],\n",
+       "       [2, 38.0, 61000.0],\n",
+       "       [1, 40.0, 63777.77777777778],\n",
+       "       [0, 35.0, 58000.0],\n",
+       "       [2, 38.77777777777778, 52000.0],\n",
+       "       [0, 48.0, 79000.0],\n",
+       "       [1, 50.0, 83000.0],\n",
+       "       [0, 37.0, 67000.0]], dtype=object)"
+      ]
+     },
+     "execution_count": 38,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x\n",
+    "# therefore country are converted into numbers but this is not the case sometimes"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "from sklearn.preprocessing import LabelEncoder,OneHotEncoder"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "onehotencoder_country=OneHotEncoder(categorical_features=[0]) # [0]--> col 0 i.e country\n",
+    "x=onehotencoder_country.fit_transform(x).toarray()\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "print(x)\n",
+    "#here all countries are defined in a single column each with some value associated with them"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "labelencoder_y=LabelEncoder()\n",
+    "y=labelencoder_y.fit_transform(y)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "y"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "print(x)"
+   ]
+  },
+  {
+   "cell_type": "raw",
+   "metadata": {},
+   "source": [
+    "update in imputer module"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "/Users/mohammadawais/anaconda3/lib/python3.7/site-packages/sklearn/preprocessing/_encoders.py:415: FutureWarning: The handling of integer data will change in version 0.22. Currently, the categories are determined based on the range [0, max(values)], while in the future they will be determined based on the unique values.\n",
+      "If you want the future behaviour and silence this warning, you can specify \"categories='auto'\".\n",
+      "In case you used a LabelEncoder before this OneHotEncoder to convert the categories to integers, then you can now use the OneHotEncoder directly.\n",
+      "  warnings.warn(msg, FutureWarning)\n"
+     ]
+    }
+   ],
+   "source": [
+    "from sklearn.preprocessing import OneHotEncoder\n",
+    "\n",
+    "\n",
+    "\n",
+    "from sklearn.compose import ColumnTransformer\n",
+    "\n",
+    "\n",
+    "\n",
+    "ct = ColumnTransformer([('encoder', OneHotEncoder(), [0])], remainder='passthrough')\n",
+    "\n",
+    "\n",
+    "\n",
+    "x = np.array(ct.fit_transform(x), dtype=np.float)\n",
+    "\n",
+    "\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[1.00000000e+00, 0.00000000e+00, 0.00000000e+00, 4.40000000e+01,\n",
+       "        7.20000000e+04],\n",
+       "       [0.00000000e+00, 0.00000000e+00, 1.00000000e+00, 2.70000000e+01,\n",
+       "        4.80000000e+04],\n",
+       "       [0.00000000e+00, 1.00000000e+00, 0.00000000e+00, 3.00000000e+01,\n",
+       "        5.40000000e+04],\n",
+       "       [0.00000000e+00, 0.00000000e+00, 1.00000000e+00, 3.80000000e+01,\n",
+       "        6.10000000e+04],\n",
+       "       [0.00000000e+00, 1.00000000e+00, 0.00000000e+00, 4.00000000e+01,\n",
+       "        6.37777778e+04],\n",
+       "       [1.00000000e+00, 0.00000000e+00, 0.00000000e+00, 3.50000000e+01,\n",
+       "        5.80000000e+04],\n",
+       "       [0.00000000e+00, 0.00000000e+00, 1.00000000e+00, 3.87777778e+01,\n",
+       "        5.20000000e+04],\n",
+       "       [1.00000000e+00, 0.00000000e+00, 0.00000000e+00, 4.80000000e+01,\n",
+       "        7.90000000e+04],\n",
+       "       [0.00000000e+00, 1.00000000e+00, 0.00000000e+00, 5.00000000e+01,\n",
+       "        8.30000000e+04],\n",
+       "       [1.00000000e+00, 0.00000000e+00, 0.00000000e+00, 3.70000000e+01,\n",
+       "        6.70000000e+04]])"
+      ]
+     },
+     "execution_count": 40,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 41,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.preprocessing import LabelEncoder\n",
+    "\n",
+    "\n",
+    "y=LabelEncoder().fit_transform(y)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 42,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([0, 1, 0, 0, 1, 1, 0, 1, 0, 1])"
+      ]
+     },
+     "execution_count": 42,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### splitting dataset in x_train,x_test,y_train,y_test"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 43,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.model_selection import train_test_split"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=.2,random_state=0)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 45,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[0.00000000e+00, 1.00000000e+00, 0.00000000e+00, 4.00000000e+01,\n",
+       "        6.37777778e+04],\n",
+       "       [1.00000000e+00, 0.00000000e+00, 0.00000000e+00, 3.70000000e+01,\n",
+       "        6.70000000e+04],\n",
+       "       [0.00000000e+00, 0.00000000e+00, 1.00000000e+00, 2.70000000e+01,\n",
+       "        4.80000000e+04],\n",
+       "       [0.00000000e+00, 0.00000000e+00, 1.00000000e+00, 3.87777778e+01,\n",
+       "        5.20000000e+04],\n",
+       "       [1.00000000e+00, 0.00000000e+00, 0.00000000e+00, 4.80000000e+01,\n",
+       "        7.90000000e+04],\n",
+       "       [0.00000000e+00, 0.00000000e+00, 1.00000000e+00, 3.80000000e+01,\n",
+       "        6.10000000e+04],\n",
+       "       [1.00000000e+00, 0.00000000e+00, 0.00000000e+00, 4.40000000e+01,\n",
+       "        7.20000000e+04],\n",
+       "       [1.00000000e+00, 0.00000000e+00, 0.00000000e+00, 3.50000000e+01,\n",
+       "        5.80000000e+04]])"
+      ]
+     },
+     "execution_count": 45,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x_train"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 46,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[0.0e+00, 1.0e+00, 0.0e+00, 3.0e+01, 5.4e+04],\n",
+       "       [0.0e+00, 1.0e+00, 0.0e+00, 5.0e+01, 8.3e+04]])"
+      ]
+     },
+     "execution_count": 46,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x_test"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 47,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([1, 1, 1, 0, 1, 0, 0, 1])"
+      ]
+     },
+     "execution_count": 47,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y_train"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 48,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([0, 0])"
+      ]
+     },
+     "execution_count": 48,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y_test"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### feature scaling"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.preprocessing import StandardScaler"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 50,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "sc_x=StandardScaler()\n",
+    "x_train=sc_x.fit_transform(x_train)\n",
+    "x_test=sc_x.fit_transform(x_test)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 51,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[-1.        ,  2.64575131, -0.77459667,  0.26306757,  0.12381479],\n",
+       "       [ 1.        , -0.37796447, -0.77459667, -0.25350148,  0.46175632],\n",
+       "       [-1.        , -0.37796447,  1.29099445, -1.97539832, -1.53093341],\n",
+       "       [-1.        , -0.37796447,  1.29099445,  0.05261351, -1.11141978],\n",
+       "       [ 1.        , -0.37796447, -0.77459667,  1.64058505,  1.7202972 ],\n",
+       "       [-1.        , -0.37796447,  1.29099445, -0.0813118 , -0.16751412],\n",
+       "       [ 1.        , -0.37796447, -0.77459667,  0.95182631,  0.98614835],\n",
+       "       [ 1.        , -0.37796447, -0.77459667, -0.59788085, -0.48214934]])"
+      ]
+     },
+     "execution_count": 51,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x_train"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Regression"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# simple linear regression"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 52,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import numpy as np\n",
+    "import pandas as pd\n",
+    "import matplotlib.pyplot as plt\n",
+    "import os"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 53,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'/Users/mohammadawais/Desktop/ML DATA'"
+      ]
+     },
+     "execution_count": 53,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "os.getcwd()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 54,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "os.chdir('/Users/mohammadawais/Desktop/ML DATA')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 55,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'/Users/mohammadawais/Desktop/ML DATA'"
+      ]
+     },
+     "execution_count": 55,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "os.getcwd()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 56,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dataset=pd.read_csv('Salary_Data.csv')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 57,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dataset=dataset.astype(int)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 58,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>YearsExperience</th>\n",
+       "      <th>Salary</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "      <td>39343</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1</td>\n",
+       "      <td>46205</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>1</td>\n",
+       "      <td>37731</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>2</td>\n",
+       "      <td>43525</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>2</td>\n",
+       "      <td>39891</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>2</td>\n",
+       "      <td>56642</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>3</td>\n",
+       "      <td>60150</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>3</td>\n",
+       "      <td>54445</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>8</th>\n",
+       "      <td>3</td>\n",
+       "      <td>64445</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>9</th>\n",
+       "      <td>3</td>\n",
+       "      <td>57189</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <td>3</td>\n",
+       "      <td>63218</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <td>4</td>\n",
+       "      <td>55794</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>12</th>\n",
+       "      <td>4</td>\n",
+       "      <td>56957</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>13</th>\n",
+       "      <td>4</td>\n",
+       "      <td>57081</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>14</th>\n",
+       "      <td>4</td>\n",
+       "      <td>61111</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>15</th>\n",
+       "      <td>4</td>\n",
+       "      <td>67938</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>16</th>\n",
+       "      <td>5</td>\n",
+       "      <td>66029</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>17</th>\n",
+       "      <td>5</td>\n",
+       "      <td>83088</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>18</th>\n",
+       "      <td>5</td>\n",
+       "      <td>81363</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>19</th>\n",
+       "      <td>6</td>\n",
+       "      <td>93940</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>20</th>\n",
+       "      <td>6</td>\n",
+       "      <td>91738</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>21</th>\n",
+       "      <td>7</td>\n",
+       "      <td>98273</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>22</th>\n",
+       "      <td>7</td>\n",
+       "      <td>101302</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>23</th>\n",
+       "      <td>8</td>\n",
+       "      <td>113812</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>24</th>\n",
+       "      <td>8</td>\n",
+       "      <td>109431</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>25</th>\n",
+       "      <td>9</td>\n",
+       "      <td>105582</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>26</th>\n",
+       "      <td>9</td>\n",
+       "      <td>116969</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>27</th>\n",
+       "      <td>9</td>\n",
+       "      <td>112635</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>28</th>\n",
+       "      <td>10</td>\n",
+       "      <td>122391</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>29</th>\n",
+       "      <td>10</td>\n",
+       "      <td>121872</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "    YearsExperience  Salary\n",
+       "0                 1   39343\n",
+       "1                 1   46205\n",
+       "2                 1   37731\n",
+       "3                 2   43525\n",
+       "4                 2   39891\n",
+       "5                 2   56642\n",
+       "6                 3   60150\n",
+       "7                 3   54445\n",
+       "8                 3   64445\n",
+       "9                 3   57189\n",
+       "10                3   63218\n",
+       "11                4   55794\n",
+       "12                4   56957\n",
+       "13                4   57081\n",
+       "14                4   61111\n",
+       "15                4   67938\n",
+       "16                5   66029\n",
+       "17                5   83088\n",
+       "18                5   81363\n",
+       "19                6   93940\n",
+       "20                6   91738\n",
+       "21                7   98273\n",
+       "22                7  101302\n",
+       "23                8  113812\n",
+       "24                8  109431\n",
+       "25                9  105582\n",
+       "26                9  116969\n",
+       "27                9  112635\n",
+       "28               10  122391\n",
+       "29               10  121872"
+      ]
+     },
+     "execution_count": 58,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "dataset"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 59,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x=dataset.iloc[:,:-1]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 60,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>YearsExperience</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>8</th>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>9</th>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <td>4</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>12</th>\n",
+       "      <td>4</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>13</th>\n",
+       "      <td>4</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>14</th>\n",
+       "      <td>4</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>15</th>\n",
+       "      <td>4</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>16</th>\n",
+       "      <td>5</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>17</th>\n",
+       "      <td>5</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>18</th>\n",
+       "      <td>5</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>19</th>\n",
+       "      <td>6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>20</th>\n",
+       "      <td>6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>21</th>\n",
+       "      <td>7</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>22</th>\n",
+       "      <td>7</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>23</th>\n",
+       "      <td>8</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>24</th>\n",
+       "      <td>8</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>25</th>\n",
+       "      <td>9</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>26</th>\n",
+       "      <td>9</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>27</th>\n",
+       "      <td>9</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>28</th>\n",
+       "      <td>10</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>29</th>\n",
+       "      <td>10</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "    YearsExperience\n",
+       "0                 1\n",
+       "1                 1\n",
+       "2                 1\n",
+       "3                 2\n",
+       "4                 2\n",
+       "5                 2\n",
+       "6                 3\n",
+       "7                 3\n",
+       "8                 3\n",
+       "9                 3\n",
+       "10                3\n",
+       "11                4\n",
+       "12                4\n",
+       "13                4\n",
+       "14                4\n",
+       "15                4\n",
+       "16                5\n",
+       "17                5\n",
+       "18                5\n",
+       "19                6\n",
+       "20                6\n",
+       "21                7\n",
+       "22                7\n",
+       "23                8\n",
+       "24                8\n",
+       "25                9\n",
+       "26                9\n",
+       "27                9\n",
+       "28               10\n",
+       "29               10"
+      ]
+     },
+     "execution_count": 60,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 61,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "y=dataset.iloc[:,1]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 62,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0      39343\n",
+       "1      46205\n",
+       "2      37731\n",
+       "3      43525\n",
+       "4      39891\n",
+       "5      56642\n",
+       "6      60150\n",
+       "7      54445\n",
+       "8      64445\n",
+       "9      57189\n",
+       "10     63218\n",
+       "11     55794\n",
+       "12     56957\n",
+       "13     57081\n",
+       "14     61111\n",
+       "15     67938\n",
+       "16     66029\n",
+       "17     83088\n",
+       "18     81363\n",
+       "19     93940\n",
+       "20     91738\n",
+       "21     98273\n",
+       "22    101302\n",
+       "23    113812\n",
+       "24    109431\n",
+       "25    105582\n",
+       "26    116969\n",
+       "27    112635\n",
+       "28    122391\n",
+       "29    121872\n",
+       "Name: Salary, dtype: int64"
+      ]
+     },
+     "execution_count": 62,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 63,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.model_selection import train_test_split"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 64,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=.2,random_state=0)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 65,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "YearsExperience    24\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 65,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x_train.count()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 66,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "YearsExperience    6\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 66,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x_test.count()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 67,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "24"
+      ]
+     },
+     "execution_count": 67,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y_train.count()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 68,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "6"
+      ]
+     },
+     "execution_count": 68,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y_test.count()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 69,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.linear_model import LinearRegression"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 70,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)"
+      ]
+     },
+     "execution_count": 70,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "regressor=LinearRegression()\n",
+    "regressor.fit(x_train,y_train)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 71,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "y_pred=regressor.predict(x_test)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 72,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([ 38754.81095069, 124017.52819395,  67175.71669845,  57702.0814492 ,\n",
+       "       114543.8929447 , 105070.25769545])"
+      ]
+     },
+     "execution_count": 72,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y_pred"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 73,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "2      37731\n",
+       "28    122391\n",
+       "13     57081\n",
+       "10     63218\n",
+       "26    116969\n",
+       "24    109431\n",
+       "Name: Salary, dtype: int64"
+      ]
+     },
+     "execution_count": 73,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y_test"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 74,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<Figure size 432x288 with 1 Axes>"
+      ]
+     },
+     "metadata": {
+      "needs_background": "light"
+     },
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "# visualizing the training set data\n",
+    "# plt.scatter(x-axis,y-axis,color='name')\n",
+    "plt.scatter(x_train,y_train,color='red')\n",
+    "plt.plot(x_train,regressor.predict(x_train),color='blue')\n",
+    "plt.title('Salary vs Experience(Training set)')\n",
+    "plt.xlabel('years of experience')\n",
+    "plt.ylabel('salary')\n",
+    "plt.show()\n"
+   ]
+  },
+  {
+   "cell_type": "raw",
+   "metadata": {},
+   "source": [
+    "blue dot is the regression line and it shows the predicted value\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 75,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<Figure size 432x288 with 1 Axes>"
+      ]
+     },
+     "metadata": {
+      "needs_background": "light"
+     },
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "# visualizing the test set data\n",
+    "plt.scatter(x_test,y_test,color='red')\n",
+    "plt.plot(x_train,regressor.predict(x_train),color='black')\n",
+    "plt.title('Salary vs Experience(Test Set)')\n",
+    "plt.xlabel('years of experience')\n",
+    "plt.ylabel('Salary')\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Multiple Regression"
+   ]
+  },
+  {
+   "cell_type": "raw",
+   "metadata": {},
+   "source": [
+    "kernel restart"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 76,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "import os"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 77,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'/Users/mohammadawais/Desktop/ML DATA'"
+      ]
+     },
+     "execution_count": 77,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "os.getcwd()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 78,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "os.chdir('/Users/mohammadawais/Desktop/ML DATA')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 79,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'/Users/mohammadawais/Desktop/ML DATA'"
+      ]
+     },
+     "execution_count": 79,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "os.getcwd()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 80,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dataset=pd.read_csv('50_Startups.csv')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 81,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>R&amp;D Spend</th>\n",
+       "      <th>Administration</th>\n",
+       "      <th>Marketing Spend</th>\n",
+       "      <th>State</th>\n",
+       "      <th>Profit</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>165349.20</td>\n",
+       "      <td>136897.80</td>\n",
+       "      <td>471784.10</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>192261.83</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>162597.70</td>\n",
+       "      <td>151377.59</td>\n",
+       "      <td>443898.53</td>\n",
+       "      <td>California</td>\n",
+       "      <td>191792.06</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>153441.51</td>\n",
+       "      <td>101145.55</td>\n",
+       "      <td>407934.54</td>\n",
+       "      <td>Florida</td>\n",
+       "      <td>191050.39</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>144372.41</td>\n",
+       "      <td>118671.85</td>\n",
+       "      <td>383199.62</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>182901.99</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>142107.34</td>\n",
+       "      <td>91391.77</td>\n",
+       "      <td>366168.42</td>\n",
+       "      <td>Florida</td>\n",
+       "      <td>166187.94</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>131876.90</td>\n",
+       "      <td>99814.71</td>\n",
+       "      <td>362861.36</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>156991.12</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>134615.46</td>\n",
+       "      <td>147198.87</td>\n",
+       "      <td>127716.82</td>\n",
+       "      <td>California</td>\n",
+       "      <td>156122.51</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>130298.13</td>\n",
+       "      <td>145530.06</td>\n",
+       "      <td>323876.68</td>\n",
+       "      <td>Florida</td>\n",
+       "      <td>155752.60</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>8</th>\n",
+       "      <td>120542.52</td>\n",
+       "      <td>148718.95</td>\n",
+       "      <td>311613.29</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>152211.77</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>9</th>\n",
+       "      <td>123334.88</td>\n",
+       "      <td>108679.17</td>\n",
+       "      <td>304981.62</td>\n",
+       "      <td>California</td>\n",
+       "      <td>149759.96</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <td>101913.08</td>\n",
+       "      <td>110594.11</td>\n",
+       "      <td>229160.95</td>\n",
+       "      <td>Florida</td>\n",
+       "      <td>146121.95</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <td>100671.96</td>\n",
+       "      <td>91790.61</td>\n",
+       "      <td>249744.55</td>\n",
+       "      <td>California</td>\n",
+       "      <td>144259.40</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>12</th>\n",
+       "      <td>93863.75</td>\n",
+       "      <td>127320.38</td>\n",
+       "      <td>249839.44</td>\n",
+       "      <td>Florida</td>\n",
+       "      <td>141585.52</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>13</th>\n",
+       "      <td>91992.39</td>\n",
+       "      <td>135495.07</td>\n",
+       "      <td>252664.93</td>\n",
+       "      <td>California</td>\n",
+       "      <td>134307.35</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>14</th>\n",
+       "      <td>119943.24</td>\n",
+       "      <td>156547.42</td>\n",
+       "      <td>256512.92</td>\n",
+       "      <td>Florida</td>\n",
+       "      <td>132602.65</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>15</th>\n",
+       "      <td>114523.61</td>\n",
+       "      <td>122616.84</td>\n",
+       "      <td>261776.23</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>129917.04</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>16</th>\n",
+       "      <td>78013.11</td>\n",
+       "      <td>121597.55</td>\n",
+       "      <td>264346.06</td>\n",
+       "      <td>California</td>\n",
+       "      <td>126992.93</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>17</th>\n",
+       "      <td>94657.16</td>\n",
+       "      <td>145077.58</td>\n",
+       "      <td>282574.31</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>125370.37</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>18</th>\n",
+       "      <td>91749.16</td>\n",
+       "      <td>114175.79</td>\n",
+       "      <td>294919.57</td>\n",
+       "      <td>Florida</td>\n",
+       "      <td>124266.90</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>19</th>\n",
+       "      <td>86419.70</td>\n",
+       "      <td>153514.11</td>\n",
+       "      <td>0.00</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>122776.86</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>20</th>\n",
+       "      <td>76253.86</td>\n",
+       "      <td>113867.30</td>\n",
+       "      <td>298664.47</td>\n",
+       "      <td>California</td>\n",
+       "      <td>118474.03</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>21</th>\n",
+       "      <td>78389.47</td>\n",
+       "      <td>153773.43</td>\n",
+       "      <td>299737.29</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>111313.02</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>22</th>\n",
+       "      <td>73994.56</td>\n",
+       "      <td>122782.75</td>\n",
+       "      <td>303319.26</td>\n",
+       "      <td>Florida</td>\n",
+       "      <td>110352.25</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>23</th>\n",
+       "      <td>67532.53</td>\n",
+       "      <td>105751.03</td>\n",
+       "      <td>304768.73</td>\n",
+       "      <td>Florida</td>\n",
+       "      <td>108733.99</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>24</th>\n",
+       "      <td>77044.01</td>\n",
+       "      <td>99281.34</td>\n",
+       "      <td>140574.81</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>108552.04</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>25</th>\n",
+       "      <td>64664.71</td>\n",
+       "      <td>139553.16</td>\n",
+       "      <td>137962.62</td>\n",
+       "      <td>California</td>\n",
+       "      <td>107404.34</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>26</th>\n",
+       "      <td>75328.87</td>\n",
+       "      <td>144135.98</td>\n",
+       "      <td>134050.07</td>\n",
+       "      <td>Florida</td>\n",
+       "      <td>105733.54</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>27</th>\n",
+       "      <td>72107.60</td>\n",
+       "      <td>127864.55</td>\n",
+       "      <td>353183.81</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>105008.31</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>28</th>\n",
+       "      <td>66051.52</td>\n",
+       "      <td>182645.56</td>\n",
+       "      <td>118148.20</td>\n",
+       "      <td>Florida</td>\n",
+       "      <td>103282.38</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>29</th>\n",
+       "      <td>65605.48</td>\n",
+       "      <td>153032.06</td>\n",
+       "      <td>107138.38</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>101004.64</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>30</th>\n",
+       "      <td>61994.48</td>\n",
+       "      <td>115641.28</td>\n",
+       "      <td>91131.24</td>\n",
+       "      <td>Florida</td>\n",
+       "      <td>99937.59</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>31</th>\n",
+       "      <td>61136.38</td>\n",
+       "      <td>152701.92</td>\n",
+       "      <td>88218.23</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>97483.56</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>32</th>\n",
+       "      <td>63408.86</td>\n",
+       "      <td>129219.61</td>\n",
+       "      <td>46085.25</td>\n",
+       "      <td>California</td>\n",
+       "      <td>97427.84</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>33</th>\n",
+       "      <td>55493.95</td>\n",
+       "      <td>103057.49</td>\n",
+       "      <td>214634.81</td>\n",
+       "      <td>Florida</td>\n",
+       "      <td>96778.92</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>34</th>\n",
+       "      <td>46426.07</td>\n",
+       "      <td>157693.92</td>\n",
+       "      <td>210797.67</td>\n",
+       "      <td>California</td>\n",
+       "      <td>96712.80</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>35</th>\n",
+       "      <td>46014.02</td>\n",
+       "      <td>85047.44</td>\n",
+       "      <td>205517.64</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>96479.51</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>36</th>\n",
+       "      <td>28663.76</td>\n",
+       "      <td>127056.21</td>\n",
+       "      <td>201126.82</td>\n",
+       "      <td>Florida</td>\n",
+       "      <td>90708.19</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>37</th>\n",
+       "      <td>44069.95</td>\n",
+       "      <td>51283.14</td>\n",
+       "      <td>197029.42</td>\n",
+       "      <td>California</td>\n",
+       "      <td>89949.14</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>38</th>\n",
+       "      <td>20229.59</td>\n",
+       "      <td>65947.93</td>\n",
+       "      <td>185265.10</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>81229.06</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>39</th>\n",
+       "      <td>38558.51</td>\n",
+       "      <td>82982.09</td>\n",
+       "      <td>174999.30</td>\n",
+       "      <td>California</td>\n",
+       "      <td>81005.76</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>40</th>\n",
+       "      <td>28754.33</td>\n",
+       "      <td>118546.05</td>\n",
+       "      <td>172795.67</td>\n",
+       "      <td>California</td>\n",
+       "      <td>78239.91</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>41</th>\n",
+       "      <td>27892.92</td>\n",
+       "      <td>84710.77</td>\n",
+       "      <td>164470.71</td>\n",
+       "      <td>Florida</td>\n",
+       "      <td>77798.83</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>42</th>\n",
+       "      <td>23640.93</td>\n",
+       "      <td>96189.63</td>\n",
+       "      <td>148001.11</td>\n",
+       "      <td>California</td>\n",
+       "      <td>71498.49</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>43</th>\n",
+       "      <td>15505.73</td>\n",
+       "      <td>127382.30</td>\n",
+       "      <td>35534.17</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>69758.98</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>44</th>\n",
+       "      <td>22177.74</td>\n",
+       "      <td>154806.14</td>\n",
+       "      <td>28334.72</td>\n",
+       "      <td>California</td>\n",
+       "      <td>65200.33</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>45</th>\n",
+       "      <td>1000.23</td>\n",
+       "      <td>124153.04</td>\n",
+       "      <td>1903.93</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>64926.08</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>46</th>\n",
+       "      <td>1315.46</td>\n",
+       "      <td>115816.21</td>\n",
+       "      <td>297114.46</td>\n",
+       "      <td>Florida</td>\n",
+       "      <td>49490.75</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>47</th>\n",
+       "      <td>0.00</td>\n",
+       "      <td>135426.92</td>\n",
+       "      <td>0.00</td>\n",
+       "      <td>California</td>\n",
+       "      <td>42559.73</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>48</th>\n",
+       "      <td>542.05</td>\n",
+       "      <td>51743.15</td>\n",
+       "      <td>0.00</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>35673.41</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>49</th>\n",
+       "      <td>0.00</td>\n",
+       "      <td>116983.80</td>\n",
+       "      <td>45173.06</td>\n",
+       "      <td>California</td>\n",
+       "      <td>14681.40</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "    R&D Spend  Administration  Marketing Spend       State     Profit\n",
+       "0   165349.20       136897.80        471784.10    New York  192261.83\n",
+       "1   162597.70       151377.59        443898.53  California  191792.06\n",
+       "2   153441.51       101145.55        407934.54     Florida  191050.39\n",
+       "3   144372.41       118671.85        383199.62    New York  182901.99\n",
+       "4   142107.34        91391.77        366168.42     Florida  166187.94\n",
+       "5   131876.90        99814.71        362861.36    New York  156991.12\n",
+       "6   134615.46       147198.87        127716.82  California  156122.51\n",
+       "7   130298.13       145530.06        323876.68     Florida  155752.60\n",
+       "8   120542.52       148718.95        311613.29    New York  152211.77\n",
+       "9   123334.88       108679.17        304981.62  California  149759.96\n",
+       "10  101913.08       110594.11        229160.95     Florida  146121.95\n",
+       "11  100671.96        91790.61        249744.55  California  144259.40\n",
+       "12   93863.75       127320.38        249839.44     Florida  141585.52\n",
+       "13   91992.39       135495.07        252664.93  California  134307.35\n",
+       "14  119943.24       156547.42        256512.92     Florida  132602.65\n",
+       "15  114523.61       122616.84        261776.23    New York  129917.04\n",
+       "16   78013.11       121597.55        264346.06  California  126992.93\n",
+       "17   94657.16       145077.58        282574.31    New York  125370.37\n",
+       "18   91749.16       114175.79        294919.57     Florida  124266.90\n",
+       "19   86419.70       153514.11             0.00    New York  122776.86\n",
+       "20   76253.86       113867.30        298664.47  California  118474.03\n",
+       "21   78389.47       153773.43        299737.29    New York  111313.02\n",
+       "22   73994.56       122782.75        303319.26     Florida  110352.25\n",
+       "23   67532.53       105751.03        304768.73     Florida  108733.99\n",
+       "24   77044.01        99281.34        140574.81    New York  108552.04\n",
+       "25   64664.71       139553.16        137962.62  California  107404.34\n",
+       "26   75328.87       144135.98        134050.07     Florida  105733.54\n",
+       "27   72107.60       127864.55        353183.81    New York  105008.31\n",
+       "28   66051.52       182645.56        118148.20     Florida  103282.38\n",
+       "29   65605.48       153032.06        107138.38    New York  101004.64\n",
+       "30   61994.48       115641.28         91131.24     Florida   99937.59\n",
+       "31   61136.38       152701.92         88218.23    New York   97483.56\n",
+       "32   63408.86       129219.61         46085.25  California   97427.84\n",
+       "33   55493.95       103057.49        214634.81     Florida   96778.92\n",
+       "34   46426.07       157693.92        210797.67  California   96712.80\n",
+       "35   46014.02        85047.44        205517.64    New York   96479.51\n",
+       "36   28663.76       127056.21        201126.82     Florida   90708.19\n",
+       "37   44069.95        51283.14        197029.42  California   89949.14\n",
+       "38   20229.59        65947.93        185265.10    New York   81229.06\n",
+       "39   38558.51        82982.09        174999.30  California   81005.76\n",
+       "40   28754.33       118546.05        172795.67  California   78239.91\n",
+       "41   27892.92        84710.77        164470.71     Florida   77798.83\n",
+       "42   23640.93        96189.63        148001.11  California   71498.49\n",
+       "43   15505.73       127382.30         35534.17    New York   69758.98\n",
+       "44   22177.74       154806.14         28334.72  California   65200.33\n",
+       "45    1000.23       124153.04          1903.93    New York   64926.08\n",
+       "46    1315.46       115816.21        297114.46     Florida   49490.75\n",
+       "47       0.00       135426.92             0.00  California   42559.73\n",
+       "48     542.05        51743.15             0.00    New York   35673.41\n",
+       "49       0.00       116983.80         45173.06  California   14681.40"
+      ]
+     },
+     "execution_count": 81,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "dataset"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 82,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x=dataset.iloc[:,:-1].values"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 83,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "y=dataset.iloc[:,4]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 84,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[165349.2, 136897.8, 471784.1, 'New York'],\n",
+       "       [162597.7, 151377.59, 443898.53, 'California'],\n",
+       "       [153441.51, 101145.55, 407934.54, 'Florida'],\n",
+       "       [144372.41, 118671.85, 383199.62, 'New York'],\n",
+       "       [142107.34, 91391.77, 366168.42, 'Florida'],\n",
+       "       [131876.9, 99814.71, 362861.36, 'New York'],\n",
+       "       [134615.46, 147198.87, 127716.82, 'California'],\n",
+       "       [130298.13, 145530.06, 323876.68, 'Florida'],\n",
+       "       [120542.52, 148718.95, 311613.29, 'New York'],\n",
+       "       [123334.88, 108679.17, 304981.62, 'California'],\n",
+       "       [101913.08, 110594.11, 229160.95, 'Florida'],\n",
+       "       [100671.96, 91790.61, 249744.55, 'California'],\n",
+       "       [93863.75, 127320.38, 249839.44, 'Florida'],\n",
+       "       [91992.39, 135495.07, 252664.93, 'California'],\n",
+       "       [119943.24, 156547.42, 256512.92, 'Florida'],\n",
+       "       [114523.61, 122616.84, 261776.23, 'New York'],\n",
+       "       [78013.11, 121597.55, 264346.06, 'California'],\n",
+       "       [94657.16, 145077.58, 282574.31, 'New York'],\n",
+       "       [91749.16, 114175.79, 294919.57, 'Florida'],\n",
+       "       [86419.7, 153514.11, 0.0, 'New York'],\n",
+       "       [76253.86, 113867.3, 298664.47, 'California'],\n",
+       "       [78389.47, 153773.43, 299737.29, 'New York'],\n",
+       "       [73994.56, 122782.75, 303319.26, 'Florida'],\n",
+       "       [67532.53, 105751.03, 304768.73, 'Florida'],\n",
+       "       [77044.01, 99281.34, 140574.81, 'New York'],\n",
+       "       [64664.71, 139553.16, 137962.62, 'California'],\n",
+       "       [75328.87, 144135.98, 134050.07, 'Florida'],\n",
+       "       [72107.6, 127864.55, 353183.81, 'New York'],\n",
+       "       [66051.52, 182645.56, 118148.2, 'Florida'],\n",
+       "       [65605.48, 153032.06, 107138.38, 'New York'],\n",
+       "       [61994.48, 115641.28, 91131.24, 'Florida'],\n",
+       "       [61136.38, 152701.92, 88218.23, 'New York'],\n",
+       "       [63408.86, 129219.61, 46085.25, 'California'],\n",
+       "       [55493.95, 103057.49, 214634.81, 'Florida'],\n",
+       "       [46426.07, 157693.92, 210797.67, 'California'],\n",
+       "       [46014.02, 85047.44, 205517.64, 'New York'],\n",
+       "       [28663.76, 127056.21, 201126.82, 'Florida'],\n",
+       "       [44069.95, 51283.14, 197029.42, 'California'],\n",
+       "       [20229.59, 65947.93, 185265.1, 'New York'],\n",
+       "       [38558.51, 82982.09, 174999.3, 'California'],\n",
+       "       [28754.33, 118546.05, 172795.67, 'California'],\n",
+       "       [27892.92, 84710.77, 164470.71, 'Florida'],\n",
+       "       [23640.93, 96189.63, 148001.11, 'California'],\n",
+       "       [15505.73, 127382.3, 35534.17, 'New York'],\n",
+       "       [22177.74, 154806.14, 28334.72, 'California'],\n",
+       "       [1000.23, 124153.04, 1903.93, 'New York'],\n",
+       "       [1315.46, 115816.21, 297114.46, 'Florida'],\n",
+       "       [0.0, 135426.92, 0.0, 'California'],\n",
+       "       [542.05, 51743.15, 0.0, 'New York'],\n",
+       "       [0.0, 116983.8, 45173.06, 'California']], dtype=object)"
+      ]
+     },
+     "execution_count": 84,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 85,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0     192261.83\n",
+       "1     191792.06\n",
+       "2     191050.39\n",
+       "3     182901.99\n",
+       "4     166187.94\n",
+       "5     156991.12\n",
+       "6     156122.51\n",
+       "7     155752.60\n",
+       "8     152211.77\n",
+       "9     149759.96\n",
+       "10    146121.95\n",
+       "11    144259.40\n",
+       "12    141585.52\n",
+       "13    134307.35\n",
+       "14    132602.65\n",
+       "15    129917.04\n",
+       "16    126992.93\n",
+       "17    125370.37\n",
+       "18    124266.90\n",
+       "19    122776.86\n",
+       "20    118474.03\n",
+       "21    111313.02\n",
+       "22    110352.25\n",
+       "23    108733.99\n",
+       "24    108552.04\n",
+       "25    107404.34\n",
+       "26    105733.54\n",
+       "27    105008.31\n",
+       "28    103282.38\n",
+       "29    101004.64\n",
+       "30     99937.59\n",
+       "31     97483.56\n",
+       "32     97427.84\n",
+       "33     96778.92\n",
+       "34     96712.80\n",
+       "35     96479.51\n",
+       "36     90708.19\n",
+       "37     89949.14\n",
+       "38     81229.06\n",
+       "39     81005.76\n",
+       "40     78239.91\n",
+       "41     77798.83\n",
+       "42     71498.49\n",
+       "43     69758.98\n",
+       "44     65200.33\n",
+       "45     64926.08\n",
+       "46     49490.75\n",
+       "47     42559.73\n",
+       "48     35673.41\n",
+       "49     14681.40\n",
+       "Name: Profit, dtype: float64"
+      ]
+     },
+     "execution_count": 85,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 86,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.preprocessing import OneHotEncoder\n",
+    "\n",
+    "\n",
+    "\n",
+    "from sklearn.compose import ColumnTransformer\n",
+    "\n",
+    "\n",
+    "\n",
+    "ct = ColumnTransformer([('encoder', OneHotEncoder(), [3])], remainder='passthrough')\n",
+    "\n",
+    "\n",
+    "\n",
+    "x = np.array(ct.fit_transform(x), dtype=np.int)\n",
+    "\n",
+    "\n",
+    "\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 87,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[     0,      0,      1, 165349, 136897, 471784],\n",
+       "       [     1,      0,      0, 162597, 151377, 443898],\n",
+       "       [     0,      1,      0, 153441, 101145, 407934],\n",
+       "       [     0,      0,      1, 144372, 118671, 383199],\n",
+       "       [     0,      1,      0, 142107,  91391, 366168],\n",
+       "       [     0,      0,      1, 131876,  99814, 362861],\n",
+       "       [     1,      0,      0, 134615, 147198, 127716],\n",
+       "       [     0,      1,      0, 130298, 145530, 323876],\n",
+       "       [     0,      0,      1, 120542, 148718, 311613],\n",
+       "       [     1,      0,      0, 123334, 108679, 304981],\n",
+       "       [     0,      1,      0, 101913, 110594, 229160],\n",
+       "       [     1,      0,      0, 100671,  91790, 249744],\n",
+       "       [     0,      1,      0,  93863, 127320, 249839],\n",
+       "       [     1,      0,      0,  91992, 135495, 252664],\n",
+       "       [     0,      1,      0, 119943, 156547, 256512],\n",
+       "       [     0,      0,      1, 114523, 122616, 261776],\n",
+       "       [     1,      0,      0,  78013, 121597, 264346],\n",
+       "       [     0,      0,      1,  94657, 145077, 282574],\n",
+       "       [     0,      1,      0,  91749, 114175, 294919],\n",
+       "       [     0,      0,      1,  86419, 153514,      0],\n",
+       "       [     1,      0,      0,  76253, 113867, 298664],\n",
+       "       [     0,      0,      1,  78389, 153773, 299737],\n",
+       "       [     0,      1,      0,  73994, 122782, 303319],\n",
+       "       [     0,      1,      0,  67532, 105751, 304768],\n",
+       "       [     0,      0,      1,  77044,  99281, 140574],\n",
+       "       [     1,      0,      0,  64664, 139553, 137962],\n",
+       "       [     0,      1,      0,  75328, 144135, 134050],\n",
+       "       [     0,      0,      1,  72107, 127864, 353183],\n",
+       "       [     0,      1,      0,  66051, 182645, 118148],\n",
+       "       [     0,      0,      1,  65605, 153032, 107138],\n",
+       "       [     0,      1,      0,  61994, 115641,  91131],\n",
+       "       [     0,      0,      1,  61136, 152701,  88218],\n",
+       "       [     1,      0,      0,  63408, 129219,  46085],\n",
+       "       [     0,      1,      0,  55493, 103057, 214634],\n",
+       "       [     1,      0,      0,  46426, 157693, 210797],\n",
+       "       [     0,      0,      1,  46014,  85047, 205517],\n",
+       "       [     0,      1,      0,  28663, 127056, 201126],\n",
+       "       [     1,      0,      0,  44069,  51283, 197029],\n",
+       "       [     0,      0,      1,  20229,  65947, 185265],\n",
+       "       [     1,      0,      0,  38558,  82982, 174999],\n",
+       "       [     1,      0,      0,  28754, 118546, 172795],\n",
+       "       [     0,      1,      0,  27892,  84710, 164470],\n",
+       "       [     1,      0,      0,  23640,  96189, 148001],\n",
+       "       [     0,      0,      1,  15505, 127382,  35534],\n",
+       "       [     1,      0,      0,  22177, 154806,  28334],\n",
+       "       [     0,      0,      1,   1000, 124153,   1903],\n",
+       "       [     0,      1,      0,   1315, 115816, 297114],\n",
+       "       [     1,      0,      0,      0, 135426,      0],\n",
+       "       [     0,      0,      1,    542,  51743,      0],\n",
+       "       [     1,      0,      0,      0, 116983,  45173]])"
+      ]
+     },
+     "execution_count": 87,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 88,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>R&amp;D Spend</th>\n",
+       "      <th>Administration</th>\n",
+       "      <th>Marketing Spend</th>\n",
+       "      <th>State</th>\n",
+       "      <th>Profit</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>165349.20</td>\n",
+       "      <td>136897.80</td>\n",
+       "      <td>471784.10</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>192261.83</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>162597.70</td>\n",
+       "      <td>151377.59</td>\n",
+       "      <td>443898.53</td>\n",
+       "      <td>California</td>\n",
+       "      <td>191792.06</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>153441.51</td>\n",
+       "      <td>101145.55</td>\n",
+       "      <td>407934.54</td>\n",
+       "      <td>Florida</td>\n",
+       "      <td>191050.39</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>144372.41</td>\n",
+       "      <td>118671.85</td>\n",
+       "      <td>383199.62</td>\n",
+       "      <td>New York</td>\n",
+       "      <td>182901.99</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>142107.34</td>\n",
+       "      <td>91391.77</td>\n",
+       "      <td>366168.42</td>\n",
+       "      <td>Florida</td>\n",
+       "      <td>166187.94</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   R&D Spend  Administration  Marketing Spend       State     Profit\n",
+       "0  165349.20       136897.80        471784.10    New York  192261.83\n",
+       "1  162597.70       151377.59        443898.53  California  191792.06\n",
+       "2  153441.51       101145.55        407934.54     Florida  191050.39\n",
+       "3  144372.41       118671.85        383199.62    New York  182901.99\n",
+       "4  142107.34        91391.77        366168.42     Florida  166187.94"
+      ]
+     },
+     "execution_count": 88,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "dataset.head()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Avoiding dummy variable trap\n",
+    "n=dummy variable\n",
+    "n-1=model select dummy variable is known as avoiding dummy variable trap"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 89,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[     0,      0,      1, 165349, 136897, 471784],\n",
+       "       [     1,      0,      0, 162597, 151377, 443898],\n",
+       "       [     0,      1,      0, 153441, 101145, 407934],\n",
+       "       [     0,      0,      1, 144372, 118671, 383199],\n",
+       "       [     0,      1,      0, 142107,  91391, 366168],\n",
+       "       [     0,      0,      1, 131876,  99814, 362861],\n",
+       "       [     1,      0,      0, 134615, 147198, 127716],\n",
+       "       [     0,      1,      0, 130298, 145530, 323876],\n",
+       "       [     0,      0,      1, 120542, 148718, 311613],\n",
+       "       [     1,      0,      0, 123334, 108679, 304981],\n",
+       "       [     0,      1,      0, 101913, 110594, 229160],\n",
+       "       [     1,      0,      0, 100671,  91790, 249744],\n",
+       "       [     0,      1,      0,  93863, 127320, 249839],\n",
+       "       [     1,      0,      0,  91992, 135495, 252664],\n",
+       "       [     0,      1,      0, 119943, 156547, 256512],\n",
+       "       [     0,      0,      1, 114523, 122616, 261776],\n",
+       "       [     1,      0,      0,  78013, 121597, 264346],\n",
+       "       [     0,      0,      1,  94657, 145077, 282574],\n",
+       "       [     0,      1,      0,  91749, 114175, 294919],\n",
+       "       [     0,      0,      1,  86419, 153514,      0],\n",
+       "       [     1,      0,      0,  76253, 113867, 298664],\n",
+       "       [     0,      0,      1,  78389, 153773, 299737],\n",
+       "       [     0,      1,      0,  73994, 122782, 303319],\n",
+       "       [     0,      1,      0,  67532, 105751, 304768],\n",
+       "       [     0,      0,      1,  77044,  99281, 140574],\n",
+       "       [     1,      0,      0,  64664, 139553, 137962],\n",
+       "       [     0,      1,      0,  75328, 144135, 134050],\n",
+       "       [     0,      0,      1,  72107, 127864, 353183],\n",
+       "       [     0,      1,      0,  66051, 182645, 118148],\n",
+       "       [     0,      0,      1,  65605, 153032, 107138],\n",
+       "       [     0,      1,      0,  61994, 115641,  91131],\n",
+       "       [     0,      0,      1,  61136, 152701,  88218],\n",
+       "       [     1,      0,      0,  63408, 129219,  46085],\n",
+       "       [     0,      1,      0,  55493, 103057, 214634],\n",
+       "       [     1,      0,      0,  46426, 157693, 210797],\n",
+       "       [     0,      0,      1,  46014,  85047, 205517],\n",
+       "       [     0,      1,      0,  28663, 127056, 201126],\n",
+       "       [     1,      0,      0,  44069,  51283, 197029],\n",
+       "       [     0,      0,      1,  20229,  65947, 185265],\n",
+       "       [     1,      0,      0,  38558,  82982, 174999],\n",
+       "       [     1,      0,      0,  28754, 118546, 172795],\n",
+       "       [     0,      1,      0,  27892,  84710, 164470],\n",
+       "       [     1,      0,      0,  23640,  96189, 148001],\n",
+       "       [     0,      0,      1,  15505, 127382,  35534],\n",
+       "       [     1,      0,      0,  22177, 154806,  28334],\n",
+       "       [     0,      0,      1,   1000, 124153,   1903],\n",
+       "       [     0,      1,      0,   1315, 115816, 297114],\n",
+       "       [     1,      0,      0,      0, 135426,      0],\n",
+       "       [     0,      0,      1,    542,  51743,      0],\n",
+       "       [     1,      0,      0,      0, 116983,  45173]])"
+      ]
+     },
+     "execution_count": 89,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 90,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x=x[:,1:]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 91,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[     0,      1, 165349, 136897, 471784],\n",
+       "       [     0,      0, 162597, 151377, 443898],\n",
+       "       [     1,      0, 153441, 101145, 407934],\n",
+       "       [     0,      1, 144372, 118671, 383199],\n",
+       "       [     1,      0, 142107,  91391, 366168],\n",
+       "       [     0,      1, 131876,  99814, 362861],\n",
+       "       [     0,      0, 134615, 147198, 127716],\n",
+       "       [     1,      0, 130298, 145530, 323876],\n",
+       "       [     0,      1, 120542, 148718, 311613],\n",
+       "       [     0,      0, 123334, 108679, 304981],\n",
+       "       [     1,      0, 101913, 110594, 229160],\n",
+       "       [     0,      0, 100671,  91790, 249744],\n",
+       "       [     1,      0,  93863, 127320, 249839],\n",
+       "       [     0,      0,  91992, 135495, 252664],\n",
+       "       [     1,      0, 119943, 156547, 256512],\n",
+       "       [     0,      1, 114523, 122616, 261776],\n",
+       "       [     0,      0,  78013, 121597, 264346],\n",
+       "       [     0,      1,  94657, 145077, 282574],\n",
+       "       [     1,      0,  91749, 114175, 294919],\n",
+       "       [     0,      1,  86419, 153514,      0],\n",
+       "       [     0,      0,  76253, 113867, 298664],\n",
+       "       [     0,      1,  78389, 153773, 299737],\n",
+       "       [     1,      0,  73994, 122782, 303319],\n",
+       "       [     1,      0,  67532, 105751, 304768],\n",
+       "       [     0,      1,  77044,  99281, 140574],\n",
+       "       [     0,      0,  64664, 139553, 137962],\n",
+       "       [     1,      0,  75328, 144135, 134050],\n",
+       "       [     0,      1,  72107, 127864, 353183],\n",
+       "       [     1,      0,  66051, 182645, 118148],\n",
+       "       [     0,      1,  65605, 153032, 107138],\n",
+       "       [     1,      0,  61994, 115641,  91131],\n",
+       "       [     0,      1,  61136, 152701,  88218],\n",
+       "       [     0,      0,  63408, 129219,  46085],\n",
+       "       [     1,      0,  55493, 103057, 214634],\n",
+       "       [     0,      0,  46426, 157693, 210797],\n",
+       "       [     0,      1,  46014,  85047, 205517],\n",
+       "       [     1,      0,  28663, 127056, 201126],\n",
+       "       [     0,      0,  44069,  51283, 197029],\n",
+       "       [     0,      1,  20229,  65947, 185265],\n",
+       "       [     0,      0,  38558,  82982, 174999],\n",
+       "       [     0,      0,  28754, 118546, 172795],\n",
+       "       [     1,      0,  27892,  84710, 164470],\n",
+       "       [     0,      0,  23640,  96189, 148001],\n",
+       "       [     0,      1,  15505, 127382,  35534],\n",
+       "       [     0,      0,  22177, 154806,  28334],\n",
+       "       [     0,      1,   1000, 124153,   1903],\n",
+       "       [     1,      0,   1315, 115816, 297114],\n",
+       "       [     0,      0,      0, 135426,      0],\n",
+       "       [     0,      1,    542,  51743,      0],\n",
+       "       [     0,      0,      0, 116983,  45173]])"
+      ]
+     },
+     "execution_count": 91,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 92,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.model_selection import train_test_split\n",
+    "x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=.2,random_state=0)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 93,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[     1,      0,  55493, 103057, 214634],\n",
+       "       [     0,      1,  46014,  85047, 205517],\n",
+       "       [     1,      0,  75328, 144135, 134050],\n",
+       "       [     0,      0,  46426, 157693, 210797],\n",
+       "       [     1,      0,  91749, 114175, 294919],\n",
+       "       [     1,      0, 130298, 145530, 323876],\n",
+       "       [     1,      0, 119943, 156547, 256512],\n",
+       "       [     0,      1,   1000, 124153,   1903],\n",
+       "       [     0,      1,    542,  51743,      0],\n",
+       "       [     0,      1,  65605, 153032, 107138],\n",
+       "       [     0,      1, 114523, 122616, 261776],\n",
+       "       [     1,      0,  61994, 115641,  91131],\n",
+       "       [     0,      0,  63408, 129219,  46085],\n",
+       "       [     0,      0,  78013, 121597, 264346],\n",
+       "       [     0,      0,  23640,  96189, 148001],\n",
+       "       [     0,      0,  76253, 113867, 298664],\n",
+       "       [     0,      1,  15505, 127382,  35534],\n",
+       "       [     0,      1, 120542, 148718, 311613],\n",
+       "       [     0,      0,  91992, 135495, 252664],\n",
+       "       [     0,      0,  64664, 139553, 137962],\n",
+       "       [     0,      1, 131876,  99814, 362861],\n",
+       "       [     0,      1,  94657, 145077, 282574],\n",
+       "       [     0,      0,  28754, 118546, 172795],\n",
+       "       [     0,      0,      0, 116983,  45173],\n",
+       "       [     0,      0, 162597, 151377, 443898],\n",
+       "       [     1,      0,  93863, 127320, 249839],\n",
+       "       [     0,      0,  44069,  51283, 197029],\n",
+       "       [     0,      1,  77044,  99281, 140574],\n",
+       "       [     0,      0, 134615, 147198, 127716],\n",
+       "       [     1,      0,  67532, 105751, 304768],\n",
+       "       [     1,      0,  28663, 127056, 201126],\n",
+       "       [     0,      1,  78389, 153773, 299737],\n",
+       "       [     0,      1,  86419, 153514,      0],\n",
+       "       [     0,      0, 123334, 108679, 304981],\n",
+       "       [     0,      0,  38558,  82982, 174999],\n",
+       "       [     1,      0,   1315, 115816, 297114],\n",
+       "       [     0,      1, 144372, 118671, 383199],\n",
+       "       [     0,      1, 165349, 136897, 471784],\n",
+       "       [     0,      0,      0, 135426,      0],\n",
+       "       [     0,      0,  22177, 154806,  28334]])"
+      ]
+     },
+     "execution_count": 93,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x_train"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 94,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "33     96778.92\n",
+       "35     96479.51\n",
+       "26    105733.54\n",
+       "34     96712.80\n",
+       "18    124266.90\n",
+       "7     155752.60\n",
+       "14    132602.65\n",
+       "45     64926.08\n",
+       "48     35673.41\n",
+       "29    101004.64\n",
+       "15    129917.04\n",
+       "30     99937.59\n",
+       "32     97427.84\n",
+       "16    126992.93\n",
+       "42     71498.49\n",
+       "20    118474.03\n",
+       "43     69758.98\n",
+       "8     152211.77\n",
+       "13    134307.35\n",
+       "25    107404.34\n",
+       "5     156991.12\n",
+       "17    125370.37\n",
+       "40     78239.91\n",
+       "49     14681.40\n",
+       "1     191792.06\n",
+       "12    141585.52\n",
+       "37     89949.14\n",
+       "24    108552.04\n",
+       "6     156122.51\n",
+       "23    108733.99\n",
+       "36     90708.19\n",
+       "21    111313.02\n",
+       "19    122776.86\n",
+       "9     149759.96\n",
+       "39     81005.76\n",
+       "46     49490.75\n",
+       "3     182901.99\n",
+       "0     192261.83\n",
+       "47     42559.73\n",
+       "44     65200.33\n",
+       "Name: Profit, dtype: float64"
+      ]
+     },
+     "execution_count": 94,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y_train"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 95,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[     1,      0,  66051, 182645, 118148],\n",
+       "       [     0,      0, 100671,  91790, 249744],\n",
+       "       [     1,      0, 101913, 110594, 229160],\n",
+       "       [     1,      0,  27892,  84710, 164470],\n",
+       "       [     1,      0, 153441, 101145, 407934],\n",
+       "       [     0,      1,  72107, 127864, 353183],\n",
+       "       [     0,      1,  20229,  65947, 185265],\n",
+       "       [     0,      1,  61136, 152701,  88218],\n",
+       "       [     1,      0,  73994, 122782, 303319],\n",
+       "       [     1,      0, 142107,  91391, 366168]])"
+      ]
+     },
+     "execution_count": 95,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x_test"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 96,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "28    103282.38\n",
+       "11    144259.40\n",
+       "10    146121.95\n",
+       "41     77798.83\n",
+       "2     191050.39\n",
+       "27    105008.31\n",
+       "38     81229.06\n",
+       "31     97483.56\n",
+       "22    110352.25\n",
+       "4     166187.94\n",
+       "Name: Profit, dtype: float64"
+      ]
+     },
+     "execution_count": 96,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y_test"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 97,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)"
+      ]
+     },
+     "execution_count": 97,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from sklearn.linear_model import LinearRegression\n",
+    "regressor=LinearRegression()\n",
+    "regressor.fit(x_train,y_train)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 98,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "y_pred=regressor.predict(x_test)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 99,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "103015.24646784231\n",
+      "132581.94062687288\n",
+      "132448.0939739524\n",
+      "71975.74395633757\n",
+      "178537.5200785241\n",
+      "116161.05196902071\n",
+      "67851.4776132232\n",
+      "98791.74112203617\n",
+      "113969.41004647149\n",
+      "167921.22416078328\n"
+     ]
+    }
+   ],
+   "source": [
+    "for i in y_pred:\n",
+    "    print(i)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 100,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "103282.38\n",
+      "144259.4\n",
+      "146121.95\n",
+      "77798.83\n",
+      "191050.39\n",
+      "105008.31\n",
+      "81229.06\n",
+      "97483.56\n",
+      "110352.25\n",
+      "166187.94\n"
+     ]
+    }
+   ],
+   "source": [
+    "for j in y_test:\n",
+    "    print(j)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 101,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "ValueError",
+     "evalue": "continuous is not supported",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mValueError\u001b[0m                                Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-101-c3585136b6cd>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[0;32mfrom\u001b[0m \u001b[0msklearn\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mmetrics\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0maccuracy_score\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 2\u001b[0;31m \u001b[0maccuracy_score\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0my_pred\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0my_test\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[0;32m~/anaconda3/lib/python3.7/site-packages/sklearn/metrics/classification.py\u001b[0m in \u001b[0;36maccuracy_score\u001b[0;34m(y_true, y_pred, normalize, sample_weight)\u001b[0m\n\u001b[1;32m    174\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    175\u001b[0m     \u001b[0;31m# Compute accuracy for each possible representation\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 176\u001b[0;31m     \u001b[0my_type\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0my_true\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0my_pred\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0m_check_targets\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0my_true\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0my_pred\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    177\u001b[0m     \u001b[0mcheck_consistent_length\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0my_true\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0my_pred\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0msample_weight\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    178\u001b[0m     \u001b[0;32mif\u001b[0m \u001b[0my_type\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mstartswith\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'multilabel'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m~/anaconda3/lib/python3.7/site-packages/sklearn/metrics/classification.py\u001b[0m in \u001b[0;36m_check_targets\u001b[0;34m(y_true, y_pred)\u001b[0m\n\u001b[1;32m     86\u001b[0m     \u001b[0;31m# No metrics support \"multiclass-multioutput\" format\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     87\u001b[0m     \u001b[0;32mif\u001b[0m \u001b[0;34m(\u001b[0m\u001b[0my_type\u001b[0m \u001b[0;32mnot\u001b[0m \u001b[0;32min\u001b[0m \u001b[0;34m[\u001b[0m\u001b[0;34m\"binary\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m\"multiclass\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m\"multilabel-indicator\"\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 88\u001b[0;31m         \u001b[0;32mraise\u001b[0m \u001b[0mValueError\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"{0} is not supported\"\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mformat\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0my_type\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     89\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     90\u001b[0m     \u001b[0;32mif\u001b[0m \u001b[0my_type\u001b[0m \u001b[0;32min\u001b[0m \u001b[0;34m[\u001b[0m\u001b[0;34m\"binary\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m\"multiclass\"\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;31mValueError\u001b[0m: continuous is not supported"
+     ]
+    }
+   ],
+   "source": [
+    "from sklearn.metrics import accuracy_score\n",
+    "accuracy_score(y_pred,y_test)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## backward elimination method:  in Multiple linear regression"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import statsmodels.formula.api as sm\n",
+    "x=np.append(arr=np.ones((50,1)).astype(int),values=x,axis=1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import statsmodels.api as smf\n",
+    "x_opt=x[:,[0,1,2,3,4,5]]\n",
+    "regressor_ols=smf.OLS(y,x_opt).fit()\n",
+    "regressor_ols.summary()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import statsmodels.api as smf\n",
+    "x_opt=x[:,[0,1,3,4,5]]\n",
+    "regressor_ols=smf.OLS(y,x_opt).fit()\n",
+    "regressor_ols.summary()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import statsmodels.api as smf\n",
+    "x_opt=x[:,[0,3,4,5]]\n",
+    "regressor_ols=smf.OLS(y,x_opt).fit()\n",
+    "regressor_ols.summary()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import statsmodels.api as smf\n",
+    "x_opt=x[:,[0,3,5]]\n",
+    "regressor_ols=smf.OLS(y,x_opt).fit()\n",
+    "regressor_ols.summary()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import statsmodels.api as smf\n",
+    "x_opt=x[:,[0,3]]\n",
+    "regressor_ols=smf.OLS(y,x_opt).fit()\n",
+    "regressor_ols.summary()"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
